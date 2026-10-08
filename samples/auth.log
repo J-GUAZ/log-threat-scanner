@@ -1,0 +1,15 @@
+Oct  8 14:00:05 web01 sshd[4105]: Accepted publickey for deploy from 203.0.113.10 port 50122 ssh2: ED25519 SHA256:examplefingerprint
+Oct  8 14:00:06 web01 sshd[4106]: pam_unix(sshd:session): session opened for user deploy(uid=1001) by (uid=0)
+Oct  8 14:03:20 web01 sshd[4106]: Failed password for alice from 203.0.113.12 port 51200 ssh2
+Oct  8 14:03:35 web01 sshd[4121]: Failed password for alice from 203.0.113.12 port 51201 ssh2
+Oct  8 14:03:50 web01 sshd[4136]: Accepted password for alice from 203.0.113.12 port 51202 ssh2
+Oct  8 14:08:20 web01 sshd[4115]: Failed password for root from 198.51.100.7 port 40000 ssh2
+Oct  8 14:08:42 web01 sshd[4137]: Failed password for invalid user admin from 198.51.100.7 port 40001 ssh2
+Oct  8 14:09:04 web01 sshd[4159]: Failed password for invalid user test from 198.51.100.7 port 40002 ssh2
+Oct  8 14:09:26 web01 sshd[4181]: Failed password for invalid user ubuntu from 198.51.100.7 port 40003 ssh2
+Oct  8 14:09:48 web01 sshd[4106]: Failed password for invalid user oracle from 198.51.100.7 port 40004 ssh2
+Oct  8 14:10:10 web01 sshd[4128]: Failed password for invalid user postgres from 198.51.100.7 port 40005 ssh2
+Oct  8 14:10:32 web01 sshd[4150]: Failed password for root from 198.51.100.7 port 40006 ssh2
+Oct  8 14:10:54 web01 sshd[4172]: Failed password for invalid user admin from 198.51.100.7 port 40007 ssh2
+Oct  8 14:11:40 web01 sshd[4121]: Connection closed by 198.51.100.7 port 40008 [preauth]
+Oct  8 14:15:00 web01 CRON[4127]: (root) CMD (/usr/local/bin/backup.sh)

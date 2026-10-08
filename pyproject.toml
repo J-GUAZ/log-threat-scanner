@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "log-threat-scanner"
+version = "0.1.0"
+description = "Scan web access logs and SSH auth logs for brute force, attack paths, and request spikes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Joshua Guaz" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+log-threat-scanner = "log_threat_scanner.cli:main"
+
+[tool.setuptools]
+packages = ["log_threat_scanner"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
