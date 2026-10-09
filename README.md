@@ -1,6 +1,13 @@
 # log-threat-scanner
 
-A small Python CLI that scans web server access logs and SSH auth logs for signs of attack:
+A command-line tool that reads server log files and points out signs that someone is attacking
+the server, such as password-guessing, probing for hidden files, or flooding it with requests.
+You give it log files and it prints a table of suspicious IP addresses, what each one did, and how
+serious it is. It's written in plain Python with no dependencies, so it runs anywhere.
+
+![log-threat-scanner output on the included sample logs](images/scan-output.png)
+
+**What it detects**
 
 - **Brute-force logins**: many failed logins from one IP within a time window (SSH and web `POST` logins)
 - **Suspicious request paths**: path traversal (`../`), SQL injection, `.env` / `.git` probes, WordPress admin probes, including URL-encoded and double-encoded payloads
@@ -25,25 +32,9 @@ log-threat-scanner /var/log/nginx/access.log /var/log/auth.log
 
 ## Sample output
 
-Run against the included sample logs (fake data, using documentation-only IP ranges from RFC 5737):
-
-```
-Scanned 2 file(s): 136 events, 3 lines ignored
-
-SEVERITY  RULE             IP               COUNT  FIRST SEEN (UTC)     DETAIL
-high      brute-force      192.0.2.44          12  2026-10-08 14:07:00  12 failed logins within 5 min
-high      brute-force      198.51.100.7         8  2026-10-08 14:08:20  8 failed logins within 5 min
-high      suspicious-path  198.51.100.23        1  2026-10-08 14:10:12  path traversal: /static/..%2F..%2F..%2Fetc%2Fpasswd
-high      suspicious-path  198.51.100.23        2  2026-10-08 14:10:15  SQL injection: /products?id=1%27%20OR%201%3D1--
-medium    suspicious-path  198.51.100.23        2  2026-10-08 14:10:00  WordPress admin probe: /wp-admin/
-medium    suspicious-path  198.51.100.23        2  2026-10-08 14:10:06  sensitive file probe: /.env
-medium    request-spike    203.0.113.99        75  2026-10-08 14:12:00  75 requests within 1 min
-
-7 finding(s): 4 high, 3 medium
-```
-
-The sample logs also contain normal traffic and two users who mistype their password once or
-twice. They are correctly **not** flagged.
+The screenshot at the top is a real run against the included sample logs (fake data, using
+documentation-only IP ranges from RFC 5737). The sample logs also contain normal traffic and two
+users who mistype their password once or twice. They are correctly **not** flagged.
 
 Use `--json` for machine-readable output:
 
